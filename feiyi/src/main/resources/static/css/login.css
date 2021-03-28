@@ -1,0 +1,49 @@
+*{
+	margin: 0 0;
+	padding: 0 0;
+	font-size: 16px;
+	font-family: "estrangelo edessa";
+	
+	}
+
+	#login_left{
+		float: left;
+	}
+	#login{width: 400px;
+	height: 450px;
+	float: left;
+	margin: 150px auto;
+	background-color: rgb(157,36,36);
+	overflow: hidden;}
+	#login ul{
+		width: 350px;
+		height: 100px;
+		margin: 50px auto;
+	}
+	#login ul li{
+		width: 350px;
+		height: 40px;
+		line-height: 40px;
+		margin-top: 8px;
+		text-align: center;
+		font-weight: bold;
+		list-style: none;
+		/*background-color: rgb(49,142,133);*/
+	}
+	#login ul li:nth-child(1){
+		/*background-color: rgb(175,200,200);*/
+		margin-bottom: 40px;
+	}
+	#login ul li label{float: left;}
+	#login ul li a{float: right;text-decoration: none;color: #000000;}
+	.login_button{
+		width: 350px;
+		height:40px;
+		background-color: rgb(90,144,179);
+		border: none;
+		font-weight: bold;
+	}
+.adminIcon{
+	position: absolute; left: 5px; top: 8px; font-size: 20px;
+}
+	

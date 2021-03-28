@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <meta charset="utf-8">
+    <title>注册</title>
+    <link href="/css/login.css" type="text/css" rel="stylesheet"/>
+    <style>
+        body{
+            background: url(/img/login_bgcolor.png);
+        }
+    </style>
+</head>
+<body>
+<div id="login_left">
+    <a href="index"><img src="/img/login2.png" height="720" width="720"/></a>
+</div>
+<div id="login">
+    <form action="index">
+        <ul>
+            <li><h3 style="font-size: 35px">register 非遗大卖场</h3></li>
+            <li>用 户 名：<input name="userName" type="text" /></li>
+            <li>性&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;别：&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                 <input type="radio" name="sex" value="1"> 男
+                &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;
+                <input type="radio" name="sex" value="2"> 女&nbsp;&nbsp;&nbsp;
+            </li>
+            <li>手 机 号：<input name="userPhone" type="tel" maxlength="11" /></li>
+            <li>密&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;码：<input name="userPwd" type="password" placeholder="请输入密码" /></li>
+            <li>确认密码：<input name="userPwd" type="password" placeholder="请再次输入密码" /></li>
+            <li><input type="submit" value="注&nbsp;&nbsp;册" class="login_button"/></li>
+        </ul>
+    </form>
+</div>
+</body>
+</html>

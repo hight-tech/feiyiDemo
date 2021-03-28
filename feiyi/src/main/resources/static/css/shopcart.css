@@ -1,0 +1,76 @@
+*{
+    margin: 0 0;
+    padding: 0 0;
+    font-size: 16px;
+    font-family: "microsoft yahei";}
+a{
+    color: black;
+    text-decoration: none;
+}
+a:hover{color: red}
+#cartTable{
+    width: 1000px;
+    height: 700px;
+    background-color: #df4e4e;
+    margin: 0 auto;
+}
+.cart_table_th{
+    width: 1000px;
+    height: 60px;
+}
+
+.wp{
+    width: 1000px;
+    height: 50px;
+    background-color: rgb(238,238,238);
+}
+.spxx{
+    width: 500px;
+    height: 50px;
+    line-height: 50px;
+    background-color: rgb(238,238,238);
+    float: left;
+}
+.th{
+    height: 50px;
+    line-height: 50px;
+    float: left;
+}
+.dj{
+    width: 100px;
+    text-align: center;
+}
+.num{
+    width: 150px;
+    text-align: center;
+}
+.cz{
+    width: 150px;
+}
+.goods{
+    width: 1000px;
+
+}
+.item{
+    width: 1000px;
+    height: 100px;
+    background-color: #1db954;
+    list-style-type: none;
+}
+ul li{
+    height: 100px;
+    float: left;
+    text-align: center;
+}
+.check{
+    width: 30px;
+}
+.pic{
+    width: 70px;
+}
+.js{width: 200px;}
+.del{text-decoration: line-through}
+.price{
+    width: 100px;
+    text-align: center;
+}

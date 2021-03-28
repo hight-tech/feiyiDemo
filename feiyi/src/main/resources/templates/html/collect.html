@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head>
+    <meta charset="UTF-8">
+    <title>我的收藏</title>
+    <link rel="stylesheet" href="/layui/css/layui.css">
+    <style>
+        .layui-table-cell{
+            display:table-cell;
+            vertical-align: middle;
+        }
+    </style>
+
+</head>
+<body>
+
+<!--购物车-->
+<table id="cart" class="layui-table" lay-filter="cart" lay-skin="nob">
+</table>
+
+<script type="text/html" id="toolbarDemo">
+    <div class="layui-btn-container">
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
+        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
+        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+    </div>
+</script>
+<script type="text/html" id="barDemo">
+    <a class="layui-btn layui-btn-danger"  lay-event="del">删除</a>
+</script>
+
+<script src="/layui/layui.js"></script>
+<script th:inline="none">
+    layui.use('table', function(){
+        var table = layui.table;
+        table.render({
+            elem: '#cart'
+            //,height: 500  //表格高度
+            ,url:'/shopCart/list'
+            ,toolbar: '#toolbarDemo'//开启工具栏
+            ,defaultToolbar:[]
+            ,totalRow: true //开启合计行
+            ,cols: [[
+                {type:'checkbox' }
+                ,{field:'cartId', title:'ID', width:80, totalRowText: '合计'}
+                ,{field:'productId',  title: '商品信息' ,templet:function (d){
+                        //console.log(d)
+                    return "<img src='/img/剪纸1号.png'/>"+d.productId
+                    }}
+                ,{field:'price', width: 80, title: '单价'}
+                ,{field:'productAmount', width: 80, title: '数量',totalRow: true}
+                ,{field:'priceCount',title: '金额', width: 80 , totalRow: true}
+                ,{title: '操作',toolbar: '#barDemo' }
+            ]]
+            ,page: true
+        });
+        //头工具栏事件
+        table.on('toolbar(cart)', function(obj){
+            var checkStatus = table.checkStatus(obj.config.id);
+            switch(obj.event){
+                case 'getCheckData':
+                    var data = checkStatus.data;
+                    layer.alert(JSON.stringify(data));
+                    break;
+                case 'getCheckLength':
+                    var data = checkStatus.data;
+                    layer.msg('选中了：'+ data.length + ' 个');
+                    break;
+                case 'isAll':
+                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                    break;
+            };
+        });
+
+        //监听行工具事件
+        table.on('tool(cart)', function(obj){
+            var data = obj.data;
+            //console.log(obj)
+            if(obj.event === 'del'){
+                layer.confirm('真的删除该商品么', function(index){
+                    obj.del();
+                    layer.close(index);
+                });
+            }
+        });
+    });
+</script>
+</body>
+</html>

@@ -1,0 +1,411 @@
+<!DOCTYPE html>
+<html xmlns:th="http://www.thymeleaf.org">
+	<head>
+		<meta charset="utf-8" />
+		<title></title>
+		<link rel="stylesheet" href="/layui/css/layui.css">
+		<link href="css/index.css" type="text/css" rel="stylesheet"/>
+		<link rel="stylesheet" type="text/css" href="/fonts/font-awesome-4.2.0/css/font-awesome.min.css" />
+		<link rel="stylesheet" href="/css/nav.css">
+		<link rel="stylesheet" href="/css/index.css">
+
+
+		<!--<style>
+			body{
+				/*background-color: rgb(157,36,36);*/
+				background: url(img/login_bgcolor.png);
+			}
+		</style>-->
+	</head>
+	<body>
+		<!-- 头部top -->
+		<div id="top">
+			<div class="top_center">
+				<!--logo-->
+				<div class="top_center_log">
+					<img src="/img/logo.jpg" width="150px" height="150px" />
+				</div>
+				<!--搜索框-->
+				<div class="top_center_search">
+					<form class="search">
+						<input name="index_none_header_sysc" type="text" placeholder="搜索" autocomplete="off">
+						<input id="ai-topsearch" value="搜索"  type="submit">
+					</form>
+				</div>
+				<!--登录 注册-->
+				<div class="top_center_right">
+					<div class="top_center_right_login">
+						<p th:text="${session.userName}"></p>
+						<p th:if="${session.userName}">
+							<a href="/shopcart">我的购物车</a>
+							<a href="/login">退出登录</a>
+						</p>
+						<p th:if="${session.userName == null}">
+							请先<a href="login">登录</a>
+							没有账号?请<a href="register">注册</a>
+						</p>
+
+					</div>
+				</div>
+			</div>
+		</div>
+		<!-- 导航栏nav -->
+		<div id="nav">
+				<ul class="nav_center">
+					<li style="background-color:rgb(213,33,13);"><a href="index">首页</a></li>
+					<li class="menuDiv"><a href="#">我的非遗</a></li>
+					<li class="menuDiv">
+						<a href="#shopping">商品菜单</a>
+						<ul class="menuUL">
+							<li class="menuLI"><a href="#jz_cszb">中国剪纸和长沙棕编</a></li>
+							<li class="menuLI"><a href="#yzs_mh">油纸伞和毛猴</a></li>
+							<li class="menuLI"><a href="#pyx_nrms">皮影戏和泥人面塑</a></li>
+							<li class="menuLI"><a href="#qhc_jtl">青花瓷和景泰蓝</a></li>
+							<li class="menuLI"><a href="#rh_cx">绒花和刺绣</a></li>
+							<li class="menuLI"><a href="#nrms_blh">布老虎和泥人面塑</a></li>
+							<li class="menuLI"><a href="#dd_byh">蛋雕和鼻烟壶</a></li>
+							<li class="menuLI"><a href="#zggj_mslp">中国弓箭和马勺脸谱</a></li>
+							<li class="menuLI"><a href="#zgjz_jtl">中国剪纸和景泰蓝</a></li>
+							<li class="menuLI"><a href="#mslp_cx">马勺脸谱和刺绣</a></li>
+						</ul>
+					</li>
+					<li class="menuDiv"><a href="#">非遗会员</a></li>
+					<li class="menuDiv"><a href="#">非遗客服</a></li>
+					<li class="menuDiv"><a href="culture">非遗文化</a></li>
+					<li class="menuDiv"><a href="aboutus">关于我们</a></li>
+				</ul>
+		</div>
+		<!-- 轮播图banner -->
+		<div id="banner">
+			<a href="#"><img class="img-slide img1" src="/img/lb1.png"  width="100%"/></a>
+			<a href="#"><img class="img-slide img2" src="/img/lb2.png" width="100%"/></a>
+			<a href="#"><img class="img-slide img3" src="/img/lb3.png" width="100%"/></a>
+		</div>
+
+		<!-- 腰带belt -->
+		<div id="belt">
+			
+			<div class="belt_center">
+				<!--中国剪纸-->
+				
+				<div class="grid">
+					<h2><a href="#" name="jz_cszb"></a>中国剪纸和棕编</h2>
+					<figure class="effect-julia">
+						<img src="/img/中国剪纸_min1.png" alt="img21"/>
+						<figcaption>
+							<h2>中国剪纸 | <span> 鸭子打架</span></h2>
+							<div>
+								<p>是鸳鸯戏水</p><br>
+								<p>不是鸭子打架</p><br>
+								<p>不贵，喜欢的话给你98折</p>
+							</div>
+							<a href="#">View more</a>
+						</figcaption>			
+					</figure>
+					<figure class="effect-julia">
+						<img src="/img/长沙棕编2号.png" alt="img22"/>
+						<figcaption>
+							<h2>长沙棕编2号 <span>长沙棕编</span></h2>
+							<div>
+								<p>仙鹤并非草鸡</p><br>
+								<p>儒雅高贵还能飞</p><br>
+								<p>可以论斤卖</p>
+							</div>
+							<a href="#">View more</a>
+						</figcaption>			
+					</figure>
+				</div>
+				<!--Goliath-->
+				
+				<div class="grid">
+					<h2><a href="#" name="yzs_mh"></a>撑着分水油纸伞的毛猴</h2>
+					<figure class="effect-goliath">
+						<img src="/img/分水油纸伞_min1.png" alt="img23"/>
+						<figcaption>
+							<!--<h2>分水油纸伞 <span>可提高携带者仙气值。</span></h2>-->
+							<p>撑着油纸伞，独自仿徨在悠长，悠长又。。。</p>
+							<a href="#">View more</a>
+						</figcaption>			
+					</figure>
+					<figure class="effect-goliath">
+						<img src="/img/毛猴_min1.png" alt="img24"/>
+						<figcaption>
+							<!--<h2>毛猴 <span>大概是猴哥的子孙</span></h2>-->
+							<p>客官可想买只回去护身~~~</p>
+							<a href="#">View more</a>
+						</figcaption>			
+					</figure>
+				</div>
+			</div>
+		</div>
+		<!-- 主体center -->
+		<div id="center">
+			<!-- 文字图片居中 -->
+			<div class="center_top">
+				<a href="#" name="shopping"><p>热卖非遗工艺品</p></a>
+			</div>
+			<!-- 商品 -->
+			<div class="center_down">
+				<div class="center_down_box">
+					<div style="background-color: rgb(49,99,146); width: 100%; height: 400px;">
+						<img src="/img/剪纸1号.png" height="450" width="350"/></div>
+					<p>价格：12 元<br/>
+						剪纸
+					</p>
+				</div>
+				<div class="center_down_box">
+					<div style="background-color: rgb(49,99,100); width: 100%; height: 400px;">
+						<img src="/img/分水油纸伞1号.png" height="450" width="350"/></div>
+					<p>价格：50 元<br/>
+					分水油纸伞
+					</p>
+				</div>
+					
+				<div class="center_down_box">
+					<div style="background-color: rgb(49,99,0); width: 100%; height: 400px;">
+						<img src="/img/弓箭2号.png" height="450" width="350"/></div>
+					<p>价格：200 元<br/>
+						弓箭
+					</p>
+				</div>
+				<div class="center_down_box">
+					<div style="background-color: rgb(49,99,146); width: 100%; height: 400px;">
+						<img src="/img/竹林七贤3号.png" height="450" width="350"/></div>
+					<p>价格：688 元<br/>
+					毛猴*竹林七贤
+					</p>
+				</div>
+				<div class="center_down_box">
+					<div style="background-color: rgb(49,99,100); width: 100%; height: 400px;">
+						<img src="/img/毛猴-桃园结义1号.png" height="450" width="350"/></div>
+					<p>价格：568 元<br/>
+						毛猴*桃园结义
+					</p>
+				</div>
+					
+				<div class="center_down_box">
+					<div style="background-color: rgb(49,99,0); width: 100%; height: 400px;">
+						<img src="/img/毛猴-西游记.png" height="450" width="350"/></div>
+					<p>价格：456 元<br/>
+						毛猴*西游记
+					</p>
+				</div>
+			</div>
+		</div>
+		<!--商品展示部分-->
+		<div id="goods">
+			<div class="goods_list">
+				<!------------------->
+				<!--青花瓷和景泰蓝   锚点：qhc_jtl   -->
+				<!------------------->
+				<div class="grid">
+					<h2><a href="#" name="qhc_jtl"></a>青花瓷和景泰蓝</h2>
+					<figure class="effect-selena">
+						<img src="/img/min/青花瓷_min1.png" alt="img10"/>
+						<figcaption>
+							<h2>青花瓷 <span>一套美丽的青花瓷</span></h2>
+							<p>青花瓷好看不贵</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+					<figure class="effect-selena">
+						<img src="/img/min/景泰蓝_min1.png" alt="景泰蓝_min1.png"/>
+						<figcaption>
+							<h2>景泰蓝 <span>有盖的盘子？？</span></h2>
+							<p>可以用来装鸡</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+				</div>
+				<!------------------->
+				<!--皮影戏和泥人面塑   锚点：pyx_nrms   -->
+				<!------------------->
+
+				<div class="grid">
+					<h2><a href="#" name="pyx_nrms"></a>皮影戏泥人面塑</h2>
+					<figure class="effect-apollo">
+						<img src="/img/min/皮影戏_min1.png" alt="img18"/>
+						<figcaption>
+							<h2>皮影戏 <span>西天取经</span></h2>
+							<p>这个时候还没有沙和尚</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+					<figure class="effect-apollo">
+						<img src="/img/min/泥人面塑_min1.png" alt="img22"/>
+						<figcaption>
+							<h2>泥人面塑 <span>老道人</span></h2>
+							<p>手持浮尘，仙风道骨，好看不贵。</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+				</div>
+				<!------------------->
+				<!--绒花和刺绣   锚点：rh_cx   -->
+				<!------------------->
+				<div class="grid">
+					<h2><a href="#" name="rh_cx"></a>绒花和刺绣</h2>
+					<figure class="effect-steve">
+						<img src="/img/min/绒花_min1.png" alt="img29"/>
+						<figcaption>
+							<h2>绒花 <span>紫色绒花</span></h2>
+							<p>是不是很美。</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+					<figure class="effect-steve">
+						<img src="/img/min/刺绣_min1.png" alt="img33"/>
+						<figcaption>
+							<h2>刺绣 <span>狮子</span></h2>
+							<p>霸气无敌，隔着屏幕我都感觉它要咬人。</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+				</div>
+				<!------------------->
+				<!--泥人面塑和布老虎   锚点：nrms_blh   -->
+				<!------------------->
+				<div class="grid">
+					<h2><a href="#" name="nrms_blh"></a>泥人面塑和布老虎</h2>
+					<figure class="effect-moses">
+						<img src="/img/min/泥人面塑_min2.png" alt="img24"/>
+						<figcaption>
+							<h2>泥人面塑 <span>五人组</span></h2>
+							<p>虽然我一个都不认识，但是这也太好看了吧。</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+					<figure class="effect-moses">
+						<img src="/img/min/布老虎_min1.png" alt="img20"/>
+						<figcaption>
+							<h2>布老虎 <span>黄色布老虎</span></h2>
+							<p>卡哇伊！~~~~~~</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+				</div>
+				<!------------------->
+				<!--蛋雕和鼻烟壶   锚点：dd_byh   -->
+				<!------------------->
+				<div class="grid">
+					<h2><a href="#" name="dd_byh"></a>蛋雕和鼻烟壶</h2>
+					<figure class="effect-jazz">
+						<img src="/img/min/蛋雕_min1.png" alt="img25"/>
+						<figcaption>
+							<h2>蛋雕 <span>用4颗蛋雕的</span></h2>
+							<p>在刀子上跳舞的蛋壳艺术</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+					<figure class="effect-jazz">
+						<img src="/img/min/鼻烟壶_min1.png" alt="img06"/>
+						<figcaption>
+							<h2>鼻烟壶 <span>白色小巧鼻烟壶</span></h2>
+							<p>明末清初，鼻烟传入中国，鼻烟盒渐渐东方化，产生了鼻烟壶。</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+				</div>
+				<!------------------->
+				<!--中国弓箭和马勺脸谱   锚点：zggj_mslp   -->
+				<!------------------->
+				<div class="grid">
+					<h2><a href="#" name="zggj_mslp"></a>中国弓箭和马勺脸谱</h2>
+					<figure class="effect-ming">
+						<img src="/img/min/中国弓箭_min3.png" alt="img09"/>
+						<figcaption>
+							<h2>中国弓箭 <span>尖锐的中国弓箭</span></h2>
+							<p>一种威力大、射程远的远射兵器。</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+					<figure class="effect-ming">
+						<img src="/img/min/马勺脸谱_min1.png" alt="img08"/>
+						<figcaption>
+							<h2>马勺脸谱 <span>千人千面</span></h2>
+							<p>看中哪个和我说，我给你打折。</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+				</div>
+				<!------------------->
+				<!--中国剪纸和景泰蓝   锚点：zgjz_jtl   -->
+				<!------------------->
+				<div class="grid">
+					<h2><a href="#" name="zgjz_jtl"></a>中国剪纸和景泰蓝</h2>
+					<figure class="effect-lexi">
+						<img src="/img/min/中国剪纸_min2.png" alt="img12"/>
+						<figcaption>
+							<h2>中国剪纸 <span>一群仙人</span></h2>
+							<p>仙人开会，买回家，他们天天在你家开会。</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+					<figure class="effect-lexi">
+						<img src="/img/min/中国剪纸_min4.png" alt="img03"/>
+						<figcaption>
+							<h2>中国剪纸 <span>年年有鱼</span></h2>
+							<p>年年有鱼，象征着对生活美好的念想。</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+				</div>
+				<!------------------->
+				<!--马勺脸谱_刺绣   锚点：mslp_cx   -->
+				<!------------------->
+				<div class="grid">
+					<h2><a href="#" name="mslp_cx"></a>马勺脸谱</h2>
+					<figure class="effect-duke">
+						<img src="/img/min/马勺脸谱_min2.png" alt="img27"/>
+						<figcaption>
+							<h2>马勺脸谱 <span>凶</span></h2>
+							<p>这是一套非常凶的马勺脸谱</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+					<figure class="effect-duke">
+						<img src="/img/min/刺绣_min2.png" alt="img17"/>
+						<figcaption>
+							<h2>马勺脸谱 <span>蓝蝴蝶</span></h2>
+							<p>针线赋予了蓝蝴蝶生命，快起飞了！！！！~~~</p>
+							<a href="#">View more</a>
+						</figcaption>
+					</figure>
+				</div>
+			</div>
+		</div>
+		<hr width="80%">
+		<!-- 底部foot -->
+		<div id="foot">
+			<p> Copyright &copy; 2021-2032  版权所有:守艺网 <br/>
+			请所有作者发布作品时务必遵守国家互联网信息管理办法规定 <br>
+			联系方式 1008611 地址：江西科技学院 信息工程学院</p>
+		</div>
+	<script src="/layui/layui.js"></script>
+	<script>
+		layui.use('layer',function (){
+			var layer = layui.layer;
+			/*var layuiSession =  sessionStorage.getItem("user");
+			var session = JSON.parse(layuiSession);
+			var user = session.loginName;
+			layer.alert(${userName});*/
+		});
+	</script>
+	</body>
+	<script type="text/javascript">
+		var index=0;
+		//改变图片
+		function ChangeImg() {
+			index++;
+			var a=document.getElementsByClassName("img-slide");
+			if(index>=a.length) index=0;
+			for(var i=0;i<a.length;i++){
+				a[i].style.display='none';
+			}
+			a[index].style.display='block';
+		}
+		//设置定时器，每隔两秒切换一张图片
+		setInterval(ChangeImg,3000);
+	</script>
+</html>
+

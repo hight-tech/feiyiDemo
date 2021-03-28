@@ -17,7 +17,7 @@
         </commentGenerator>
         <!--数据库链接URL，用户名、密码 -->
         <jdbcConnection driverClass="com.mysql.cj.jdbc.Driver"
-                        connectionURL="jdbc:mysql://127.0.0.1:3306/test?serverTimezone=UTC"
+                        connectionURL="jdbc:mysql://127.0.0.1:3306/feiyi?serverTimezone=UTC"
                         userId="root"
                         password="1234">
         </jdbcConnection>
@@ -30,7 +30,7 @@
             <property name="forceBigDecimals" value="false" />
         </javaTypeResolver>
         <!-- 生成模型的包名和位置-->
-        <javaModelGenerator targetPackage="com.yang.demo.entity" targetProject="src/main/java">
+        <javaModelGenerator targetPackage="com.jxut.feiyi.entity" targetProject="src/main/java">
             <!-- 默认false 是否允许子包 -->
             <property name="enableSubPackages" value="true" />
             <!-- 默认false 是否对model添加 构造函数 -->
@@ -45,13 +45,13 @@
             <property name="enableSubPackages" value="true"/>
         </sqlMapGenerator>
         <!-- 生成DAO的包名和位置-->
-        <javaClientGenerator type="XMLMAPPER" targetPackage="com.yang.demo.mapper" targetProject="src/main/java">
+        <javaClientGenerator type="XMLMAPPER" targetPackage="com.jxut.feiyi.mapper" targetProject="src/main/java">
             <property name="enableSubPackages" value="true"/>
         </javaClientGenerator>
 
         <!--生成对应表及类名,enableXXX:XXX代表多种SQL方法，该属性用来指定是否生成对应的XXX语句-->
         <!-- 要生成的表 tableName是数据库中的表名或视图名 domainObjectName是实体类名-->
-        <table tableName="demo_user" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
+        <table tableName="customer_login" enableCountByExample="false" enableUpdateByExample="false" enableDeleteByExample="false" enableSelectByExample="false" selectByExampleQueryId="false">
             <!--useActualColumnNames:如果设置为true,那么MBG会使用从数据库元数据获取的列名作为生成的实体对象的属性。 如果为false(默认值)，MGB将会尝试将返回的名称转换为驼峰形式-->
             <!--<property name="useActualColumnNames" value="true"/>-->
         </table>
