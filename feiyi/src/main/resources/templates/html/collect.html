@@ -20,9 +20,9 @@
 
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckData">获取选中行数据</button>
-        <button class="layui-btn layui-btn-sm" lay-event="getCheckLength">获取选中数目</button>
-        <button class="layui-btn layui-btn-sm" lay-event="isAll">验证是否全选</button>
+        <button class="layui-btn" lay-event="goIndex">返回首页</button>
+        <button class="layui-btn" lay-event="getCheckData">结算</button>
+        <button class="layui-btn" lay-event="isAll">移除收藏</button>
     </div>
 </script>
 <script type="text/html" id="barDemo">
@@ -58,6 +58,9 @@
         table.on('toolbar(cart)', function(obj){
             var checkStatus = table.checkStatus(obj.config.id);
             switch(obj.event){
+                case 'goIndex':
+                    window.location.href ="index";
+                    break;
                 case 'getCheckData':
                     var data = checkStatus.data;
                     layer.alert(JSON.stringify(data));

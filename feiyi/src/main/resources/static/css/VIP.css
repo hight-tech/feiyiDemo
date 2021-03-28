@@ -1,0 +1,84 @@
+.box{
+    margin: 0 auto;
+    width: 1200px;
+    height: 800px;
+    background-color: #F5F5F5;
+}
+
+.choice{
+    margin-top: 20px;
+    width: 1200px;
+    height: 400px;
+    border-bottom: 1px dotted #cbcbcb;
+    border-top: 1px dotted #cbcbcb;
+}
+.permanent{
+    width: 365px;
+    height: 100px;
+    padding: 10px 0 10px 0px;
+    position: relative;
+    border: #c8c8c8 1px solid;
+    cursor: pointer;
+    margin: 25px 30px 0 0;
+    background: #fff;
+}
+.current{
+    border: #156db0 2px solid;
+    background: #FFF url(../img/img_1.png) no-repeat 100% 100%;
+}
+.money {
+    width: 180px;
+    text-align: center;
+
+}
+.left {
+    float: left !important;
+}
+.money_much {
+    font-size: 24px;
+    color: #ff4200;
+    height: 48px;
+    line-height: 90px;
+}
+.price{
+    font-size: 40px;
+    color: #ff4200;
+}
+.right {
+    float: right !important;
+}
+.time {
+    width: 150px;
+    height: 100%;
+    text-align: center;
+    border-left: #e2e2e2 1px dashed;
+}
+.two {
+    font-size: 18px;
+    color: #A2A2A2;
+    margin-top: 43px;
+}
+.clear:after {
+    visibility: hidden;
+    display: block;
+    font-size: 0;
+    content: " ";
+    clear: both;
+    height: 0;
+}
+.pay-num{
+    font-size: 20px;
+    color: #5c5c5c;
+    margin-top: 10px;
+}
+.money_num{
+    font-size: 30px;
+    color: #ff4200;
+    font-weight: bold;
+    margin-left: 16px;
+}
+.btn{
+    width: 300px;
+    height: 60px;
+    font-size: 25px;
+}
