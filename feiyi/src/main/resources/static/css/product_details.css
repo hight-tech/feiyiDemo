@@ -1,0 +1,108 @@
+
+#product_details{
+    width: 100%;
+    height: 260px;
+    background-color: rgb(231,209,208);
+}
+/******************/
+/*local 当前位置开始*/
+/******************/
+.local{
+    width: 1200px;
+    height: 260px;
+    margin: 0 auto;
+    background-image: url("../img/产品详情.png");
+    z-index: 20;
+    position: relative;
+}
+.local a{
+    font-size: 24px;
+    color:rgb(137,60,60);
+    text-decoration: none;
+    position: absolute;
+    top:116px;
+    left:525px;
+    cursor: pointer;
+}
+/*************/
+/*       ******************goods货物开始***************       */
+/*************/
+.goods{
+    width: 1200px;
+    height: 450px;
+    margin: 100px auto;
+    overflow: hidden;
+}
+.goods_left{
+    width: 580px;
+    height:420px;
+    float: left;
+    border: 10px solid #b5775c;
+    margin-right: 20px;
+}
+.goods_right{
+    width: 520px;
+    height:420px;
+    float: left;
+    padding-left: 60px;
+    /*outline: 1px solid #00F7DE;*/
+}
+.goods_right p{
+    width: 500px;
+    height: 150px;
+    color: #5c5c5c;
+    /*outline: 1px solid #00F7DE;*/
+}
+.intoShopCar{
+    width:200px;
+    height: 60px;
+    background-color: #0C0C0C;
+    /*background-color: #b5775c;*/
+    color: #fff;
+    margin-left: 30px;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center  ;
+    transition: background-color 0.5s;
+    /*-webkit-transition: background-color 2s ;*/
+    position: relative;
+    float: left;
+}
+.intoShopCar:hover{
+
+    background-color:#eb7350;
+
+}
+.buyNow{
+    width:200px;
+    height: 60px;
+    background-color: #0C0C0C;
+    /*background-color: #b5775c;*/
+    color: #fff;
+    margin-left: 30px;
+    line-height: 60px;
+    font-size: 18px;
+    font-weight: bold;
+    text-align: center  ;
+    transition: background-color 0.5s;
+    /*-webkit-transition: background-color 2s ;*/
+    position: relative;
+    float: left;
+}
+.buyNow:hover{
+
+    background-color:#eb7350;
+
+}
+/*************/
+/*     *****************goods_cultural   begin***************     */
+/*************/
+#goods_cultural{
+
+    width: 1200px;
+    height: 260px;
+    margin: 50px auto;
+    overflow: hidden;
+    color: #8D8D8D;
+}
