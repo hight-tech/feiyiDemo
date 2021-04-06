@@ -1,0 +1,112 @@
+<?xml version="1.0" encoding="UTF-8" ?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
+<mapper namespace="com.jxut.feiyi.mapper.OrderCollectMapper" >
+  <resultMap id="BaseResultMap" type="com.jxut.feiyi.entity.OrderCollect" >
+    <id column="collect_id" property="collectId" jdbcType="INTEGER" />
+    <result column="product_id" property="productId" jdbcType="INTEGER" />
+    <result column="customer_id" property="customerId" jdbcType="INTEGER" />
+    <result column="collect_time" property="collectTime" jdbcType="TIMESTAMP" />
+    <result column="product_number" property="productNumber" jdbcType="INTEGER" />
+    <result column="price" property="price" jdbcType="DECIMAL" />
+  </resultMap>
+  <sql id="Base_Column_List" >
+    collect_id, product_id, customer_id, collect_time, product_number, price
+  </sql>
+  <select id="selectByPrimaryKey" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select 
+    <include refid="Base_Column_List" />
+    from order_collect
+    where collect_id = #{collectId,jdbcType=INTEGER}
+  </select>
+  <select id="selectCollectByCId" resultMap="BaseResultMap" parameterType="java.lang.Integer" >
+    select
+    <include refid="Base_Column_List" />
+    from order_collect
+    where customer_id = #{customerId,jdbcType=INTEGER} ORDER BY collect_id DESC
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    delete from order_collect
+    where collect_id = #{collectId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jxut.feiyi.entity.OrderCollect" >
+    insert into order_collect (collect_id, product_id, customer_id, 
+      collect_time, product_number, price
+      )
+    values (#{collectId,jdbcType=INTEGER}, #{productId,jdbcType=INTEGER}, #{customerId,jdbcType=INTEGER}, 
+      #{collectTime,jdbcType=TIMESTAMP}, #{productNumber,jdbcType=INTEGER}, #{price,jdbcType=DECIMAL}
+      )
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxut.feiyi.entity.OrderCollect" >
+    insert into order_collect
+    <trim prefix="(" suffix=")" suffixOverrides="," >
+      <if test="collectId != null" >
+        collect_id,
+      </if>
+      <if test="productId != null" >
+        product_id,
+      </if>
+      <if test="customerId != null" >
+        customer_id,
+      </if>
+      <if test="collectTime != null" >
+        collect_time,
+      </if>
+      <if test="productNumber != null" >
+        product_number,
+      </if>
+      <if test="price != null" >
+        price,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides="," >
+      <if test="collectId != null" >
+        #{collectId,jdbcType=INTEGER},
+      </if>
+      <if test="productId != null" >
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="collectTime != null" >
+        #{collectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productNumber != null" >
+        #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        #{price,jdbcType=DECIMAL},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxut.feiyi.entity.OrderCollect" >
+    update order_collect
+    <set >
+      <if test="productId != null" >
+        product_id = #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="customerId != null" >
+        customer_id = #{customerId,jdbcType=INTEGER},
+      </if>
+      <if test="collectTime != null" >
+        collect_time = #{collectTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="productNumber != null" >
+        product_number = #{productNumber,jdbcType=INTEGER},
+      </if>
+      <if test="price != null" >
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+    </set>
+    where collect_id = #{collectId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxut.feiyi.entity.OrderCollect" >
+    update order_collect
+    set product_id = #{productId,jdbcType=INTEGER},
+      customer_id = #{customerId,jdbcType=INTEGER},
+      collect_time = #{collectTime,jdbcType=TIMESTAMP},
+      product_number = #{productNumber,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL}
+    where collect_id = #{collectId,jdbcType=INTEGER}
+  </update>
+</mapper>

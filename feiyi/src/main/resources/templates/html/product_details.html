@@ -3,12 +3,13 @@
 <head>
     <meta charset="UTF-8">
     <title>商品信息页面</title>
-    <link rel="stylesheet" type="text/css" href="../../static/css/nav.css" />
-    <link rel="stylesheet" type="text/css" href="../../static/css/product_details.css" />
+    <link rel="stylesheet" type="text/css" href="/css/nav.css" />
+    <link rel="stylesheet" type="text/css" href="/css/product_details.css" />
+    <link rel="stylesheet" href="/layui/css/layui.css">
 </head>
 <body>
 <!-- 导航栏nav -->
-<div id="nav">
+<!--<div id="nav">
     <ul class="nav_center">
         <li class="menuDiv"><a href="index">首页</a></li>
         <li class="menuDiv"><a href="#">我的非遗</a></li>
@@ -32,27 +33,28 @@
         <li style="background-color:rgb(213,33,13);"><a href="culture">非遗文化</a></li>
         <li class="menuDiv"><a href="aboutus">关于我们</a></li>
     </ul>
-</div>
+</div>-->
 <!--*******-->
 <!--当前位置-->
 <!--*******-->
 <div id="product_details">
     <div class="local">
 <!--  返回首页的超链接需要修改！！！！！！      -->
-        <a href="#">首页面</a>
+        <a href="index">首页面</a>
     </div>
 </div>
 <!--*******-->
 <!--商品页面-->
 <!--*******-->
 <div class="goods">
-    <div class="goods_left">
-        <img src="../../static/img/min/鼻烟壶_min1.png" width="100%" height="100%">
+    <div class="goods_left pic">
+
     </div>
-    <div class="goods_right">
+    <!--<div class="goods_right">
         <h1>非遗商品名称</h1>
-        <span style="color: red;font-size: 32px;">￥998.00</span>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="text-decoration: line-through">￥10000.05</span>
-        <p>
+        <span style="color: red;font-size: 32px;" class="price">￥998.00</span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="text-decoration: line-through" class="price2">￥10000.05</span>
+        <p class="descript">
             中国鼻烟壶，作为精美的工艺品，采用瓷、铜、象牙、玉石、玛瑙、琥珀等材质，
             运用青花、五彩、雕瓷、套料、巧作、内画等技法，
             汲取了域内外多种工艺的优点，被雅好者视为珍贵文玩，在海内外皆享有盛誉。
@@ -60,12 +62,28 @@
         <hr/>
         <a href="#"><div class="intoShopCar">加入购物车</div></a>
         <a href="#"><div class="buyNow">直接购买</div></a>
+    </div>-->
+    <div class="goods_right">
+        <h1> </h1>
+        <span style="color: red;font-size: 32px;" class="price"> </span>
+        &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="text-decoration: line-through" class="price2"> </span>
+        <p class="descript">
+        </p>
+        <div class="layui-form-item">
+            <label class="layui-form-label">数量</label>
+            <div class="layui-input-block">
+                <input type="number" id="number" class="layui-input" name="product_amount" value="1">
+            </div>
+        </div>
+        <hr/>
+        <a href="#" id="add"><div class="intoShopCar">加入购物车</div></a>
+        <a href="payforsuccess"><div class="buyNow">直接购买</div></a>
     </div>
 </div>
 <!--*******-->
 <!--商品大类文化详细介绍-->
 <!--*******-->
-<div id="goods_cultural">
+<!--<div id="goods_cultural">
     <p>在世界上，中国素有「烟壶之乡」的称誉，其中鼻烟壶以其精巧卓绝的制作技术，
         被称为「集多种工艺之大成于一身的袖珍艺术品」。鼻烟壶为盛装鼻烟之容器，
         鼻烟系一种烟草制品，原为西洋之物，
@@ -73,8 +91,61 @@
         吸闻之后不但具有明目避疫的功效，吸闻鼻烟在各阶层更是蔚为风尚，
         且迅速地融入了中国的艺术风格，发展出匠心独运的各式鼻烟壶，
         在清代美学工艺上大放异彩，成为清代艺术的重要标志之一。</p>
-</div>
+</div>-->
+<script src="/layui/layui.js"></script>
+<script>
+    layui.use('layer',function (){
+        let layer=layui.layer;
+        let $=layui.$;
+        let pid=[[${pid}]];//获取产品的id
 
+        let price,
+            number=1;
+        //layer.alert(pid);
+        $.ajax({
+            url:'goodsInfo?pid='+pid,
+            method:'get',
+            //data:data.field,
+            dataType:'JSON',
+            success:function(res){
+                //layer.alert(res.data.productName);
+                $('h1').html(res.data.productName);
+                $('.price').html('￥'+res.data.price);
+                $('.price2').html('￥'+(res.data.price*0.1+res.data.price));
+                $('.descript').html(res.data.descript);
+                $('.pic').html('<img class="pic" src="'+res.data.pic+'" width="100%" height="100%">');
+                price=res.data.price;
+            }
+        });
+        //onchange
+        $("#number").on("input",function(e){
+            if(e.delegateTarget.value!=""){
+                number=e.delegateTarget.value;
+                $('.price').html('￥'+price*number);
+            }
+            //输入框的值改变时触发
+            //获取input输入的值
+            // console.log(e.delegateTarget.name);
+            // console.log(e.delegateTarget.value);
+        })
+        //添加购物车
+        $(document).on('click','#add',function(){
+            $.ajax({
+                url:'/shopCart/addToShopCart?pid='+pid+'&productAmount='+number,
+                method:'get',
+                dataType:'JSON',
+                success:function(res){
+                    if(res.code==200){
+                        layer.alert(res.msg);
+                        window.location.href ="shopcart";
+                    }if(res.code==500){
+                        layer.alert(res.msg);
+                    }
+                }
+            });
+        })
+    })
+</script>
 
 
 </body>

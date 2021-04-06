@@ -1,0 +1,316 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.jxut.feiyi.mapper.ProductInfoMapper">
+  <resultMap id="BaseResultMap" type="com.jxut.feiyi.entity.ProductInfo">
+    <id column="product_id" jdbcType="INTEGER" property="productId" />
+    <result column="product_core" jdbcType="CHAR" property="productCore" />
+    <result column="product_name" jdbcType="VARCHAR" property="productName" />
+    <result column="bar_code" jdbcType="VARCHAR" property="barCode" />
+    <result column="brand_id" jdbcType="INTEGER" property="brandId" />
+    <result column="one_category_id" jdbcType="SMALLINT" property="oneCategoryId" />
+    <result column="two_category_id" jdbcType="SMALLINT" property="twoCategoryId" />
+    <result column="three_category_id" jdbcType="SMALLINT" property="threeCategoryId" />
+    <result column="supplier_id" jdbcType="INTEGER" property="supplierId" />
+    <result column="price" jdbcType="DECIMAL" property="price" />
+    <result column="average_cost" jdbcType="DECIMAL" property="averageCost" />
+    <result column="publish_status" jdbcType="TINYINT" property="publishStatus" />
+    <result column="audit_status" jdbcType="TINYINT" property="auditStatus" />
+    <result column="goods_weight" jdbcType="REAL" property="goodsWeight" />
+    <result column="goods_length" jdbcType="REAL" property="goodsLength" />
+    <result column="goods_height" jdbcType="REAL" property="goodsHeight" />
+    <result column="goods_width" jdbcType="REAL" property="goodsWidth" />
+    <result column="color_type" jdbcType="CHAR" property="colorType" />
+    <result column="production_date" jdbcType="TIMESTAMP" property="productionDate" />
+    <result column="shelf_life" jdbcType="INTEGER" property="shelfLife" />
+    <result column="descript" jdbcType="VARCHAR" property="descript" />
+    <result column="pic" jdbcType="VARCHAR" property="pic" />
+    <result column="indate" jdbcType="TIMESTAMP" property="indate" />
+    <result column="modified_time" jdbcType="TIMESTAMP" property="modifiedTime" />
+  </resultMap>
+  <sql id="Base_Column_List">
+    product_id, product_core, product_name, bar_code, brand_id, one_category_id, two_category_id, 
+    three_category_id, supplier_id, price, average_cost, publish_status, audit_status, 
+    goods_weight, goods_length, goods_height, goods_width, color_type, production_date, 
+    shelf_life, descript, indate, modified_time, pic
+  </sql>
+  <select id="selectByPrimaryKey" parameterType="java.lang.Integer" resultMap="BaseResultMap">
+    select 
+    <include refid="Base_Column_List" />
+    from product_info
+    where product_id = #{productId,jdbcType=INTEGER}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer">
+    delete from product_info
+    where product_id = #{productId,jdbcType=INTEGER}
+  </delete>
+  <insert id="insert" parameterType="com.jxut.feiyi.entity.ProductInfo">
+    insert into product_info (product_id, product_core, product_name, 
+      bar_code, brand_id, one_category_id, 
+      two_category_id, three_category_id, supplier_id, 
+      price, average_cost, publish_status, 
+      audit_status, goods_weight, goods_length, 
+      goods_height, goods_width, color_type, 
+      production_date, shelf_life, descript, 
+      indate, modified_time)
+    values (#{productId,jdbcType=INTEGER}, #{productCore,jdbcType=CHAR}, #{productName,jdbcType=VARCHAR}, 
+      #{barCode,jdbcType=VARCHAR}, #{brandId,jdbcType=INTEGER}, #{oneCategoryId,jdbcType=SMALLINT}, 
+      #{twoCategoryId,jdbcType=SMALLINT}, #{threeCategoryId,jdbcType=SMALLINT}, #{supplierId,jdbcType=INTEGER}, 
+      #{price,jdbcType=DECIMAL}, #{averageCost,jdbcType=DECIMAL}, #{publishStatus,jdbcType=TINYINT}, 
+      #{auditStatus,jdbcType=TINYINT}, #{goodsWeight,jdbcType=REAL}, #{goodsLength,jdbcType=REAL}, 
+      #{goodsHeight,jdbcType=REAL}, #{goodsWidth,jdbcType=REAL}, #{colorType,jdbcType=CHAR}, 
+      #{productionDate,jdbcType=TIMESTAMP}, #{shelfLife,jdbcType=INTEGER}, #{descript,jdbcType=VARCHAR}, 
+      #{indate,jdbcType=TIMESTAMP}, #{modifiedTime,jdbcType=TIMESTAMP})
+  </insert>
+  <insert id="insertSelective" parameterType="com.jxut.feiyi.entity.ProductInfo">
+    insert into product_info
+    <trim prefix="(" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        product_id,
+      </if>
+      <if test="productCore != null">
+        product_core,
+      </if>
+      <if test="productName != null">
+        product_name,
+      </if>
+      <if test="barCode != null">
+        bar_code,
+      </if>
+      <if test="brandId != null">
+        brand_id,
+      </if>
+      <if test="oneCategoryId != null">
+        one_category_id,
+      </if>
+      <if test="twoCategoryId != null">
+        two_category_id,
+      </if>
+      <if test="threeCategoryId != null">
+        three_category_id,
+      </if>
+      <if test="supplierId != null">
+        supplier_id,
+      </if>
+      <if test="price != null">
+        price,
+      </if>
+      <if test="averageCost != null">
+        average_cost,
+      </if>
+      <if test="publishStatus != null">
+        publish_status,
+      </if>
+      <if test="auditStatus != null">
+        audit_status,
+      </if>
+      <if test="goodsWeight != null">
+        goods_weight,
+      </if>
+      <if test="goodsLength != null">
+        goods_length,
+      </if>
+      <if test="goodsHeight != null">
+        goods_height,
+      </if>
+      <if test="goodsWidth != null">
+        goods_width,
+      </if>
+      <if test="colorType != null">
+        color_type,
+      </if>
+      <if test="productionDate != null">
+        production_date,
+      </if>
+      <if test="shelfLife != null">
+        shelf_life,
+      </if>
+      <if test="descript != null">
+        descript,
+      </if>
+      <if test="indate != null">
+        indate,
+      </if>
+      <if test="modifiedTime != null">
+        modified_time,
+      </if>
+      <if test="pic != null">
+        pic,
+      </if>
+    </trim>
+    <trim prefix="values (" suffix=")" suffixOverrides=",">
+      <if test="productId != null">
+        #{productId,jdbcType=INTEGER},
+      </if>
+      <if test="productCore != null">
+        #{productCore,jdbcType=CHAR},
+      </if>
+      <if test="productName != null">
+        #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="oneCategoryId != null">
+        #{oneCategoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="twoCategoryId != null">
+        #{twoCategoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="threeCategoryId != null">
+        #{threeCategoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="supplierId != null">
+        #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="averageCost != null">
+        #{averageCost,jdbcType=DECIMAL},
+      </if>
+      <if test="publishStatus != null">
+        #{publishStatus,jdbcType=TINYINT},
+      </if>
+      <if test="auditStatus != null">
+        #{auditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="goodsWeight != null">
+        #{goodsWeight,jdbcType=REAL},
+      </if>
+      <if test="goodsLength != null">
+        #{goodsLength,jdbcType=REAL},
+      </if>
+      <if test="goodsHeight != null">
+        #{goodsHeight,jdbcType=REAL},
+      </if>
+      <if test="goodsWidth != null">
+        #{goodsWidth,jdbcType=REAL},
+      </if>
+      <if test="colorType != null">
+        #{colorType,jdbcType=CHAR},
+      </if>
+      <if test="productionDate != null">
+        #{productionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shelfLife != null">
+        #{shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="descript != null">
+        #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="indate != null">
+        #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+      <if test="pic != null">
+        #{pic,jdbcType=VARCHAR},
+      </if>
+    </trim>
+  </insert>
+  <update id="updateByPrimaryKeySelective" parameterType="com.jxut.feiyi.entity.ProductInfo">
+    update product_info
+    <set>
+      <if test="productCore != null">
+        product_core = #{productCore,jdbcType=CHAR},
+      </if>
+      <if test="productName != null">
+        product_name = #{productName,jdbcType=VARCHAR},
+      </if>
+      <if test="barCode != null">
+        bar_code = #{barCode,jdbcType=VARCHAR},
+      </if>
+      <if test="brandId != null">
+        brand_id = #{brandId,jdbcType=INTEGER},
+      </if>
+      <if test="oneCategoryId != null">
+        one_category_id = #{oneCategoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="twoCategoryId != null">
+        two_category_id = #{twoCategoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="threeCategoryId != null">
+        three_category_id = #{threeCategoryId,jdbcType=SMALLINT},
+      </if>
+      <if test="supplierId != null">
+        supplier_id = #{supplierId,jdbcType=INTEGER},
+      </if>
+      <if test="price != null">
+        price = #{price,jdbcType=DECIMAL},
+      </if>
+      <if test="averageCost != null">
+        average_cost = #{averageCost,jdbcType=DECIMAL},
+      </if>
+      <if test="publishStatus != null">
+        publish_status = #{publishStatus,jdbcType=TINYINT},
+      </if>
+      <if test="auditStatus != null">
+        audit_status = #{auditStatus,jdbcType=TINYINT},
+      </if>
+      <if test="goodsWeight != null">
+        goods_weight = #{goodsWeight,jdbcType=REAL},
+      </if>
+      <if test="goodsLength != null">
+        goods_length = #{goodsLength,jdbcType=REAL},
+      </if>
+      <if test="goodsHeight != null">
+        goods_height = #{goodsHeight,jdbcType=REAL},
+      </if>
+      <if test="goodsWidth != null">
+        goods_width = #{goodsWidth,jdbcType=REAL},
+      </if>
+      <if test="colorType != null">
+        color_type = #{colorType,jdbcType=CHAR},
+      </if>
+      <if test="productionDate != null">
+        production_date = #{productionDate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="shelfLife != null">
+        shelf_life = #{shelfLife,jdbcType=INTEGER},
+      </if>
+      <if test="descript != null">
+        descript = #{descript,jdbcType=VARCHAR},
+      </if>
+      <if test="indate != null">
+        indate = #{indate,jdbcType=TIMESTAMP},
+      </if>
+      <if test="modifiedTime != null">
+        modified_time = #{modifiedTime,jdbcType=TIMESTAMP},
+      </if>
+    </set>
+    <if test="pic != null">
+      pic = #{pic,jdbcType=VARCHAR},
+    </if>
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+  <update id="updateByPrimaryKey" parameterType="com.jxut.feiyi.entity.ProductInfo">
+    update product_info
+    set product_core = #{productCore,jdbcType=CHAR},
+      product_name = #{productName,jdbcType=VARCHAR},
+      bar_code = #{barCode,jdbcType=VARCHAR},
+      brand_id = #{brandId,jdbcType=INTEGER},
+      one_category_id = #{oneCategoryId,jdbcType=SMALLINT},
+      two_category_id = #{twoCategoryId,jdbcType=SMALLINT},
+      three_category_id = #{threeCategoryId,jdbcType=SMALLINT},
+      supplier_id = #{supplierId,jdbcType=INTEGER},
+      price = #{price,jdbcType=DECIMAL},
+      average_cost = #{averageCost,jdbcType=DECIMAL},
+      publish_status = #{publishStatus,jdbcType=TINYINT},
+      audit_status = #{auditStatus,jdbcType=TINYINT},
+      goods_weight = #{goodsWeight,jdbcType=REAL},
+      goods_length = #{goodsLength,jdbcType=REAL},
+      goods_height = #{goodsHeight,jdbcType=REAL},
+      goods_width = #{goodsWidth,jdbcType=REAL},
+      color_type = #{colorType,jdbcType=CHAR},
+      production_date = #{productionDate,jdbcType=TIMESTAMP},
+      shelf_life = #{shelfLife,jdbcType=INTEGER},
+      descript = #{descript,jdbcType=VARCHAR},
+      indate = #{indate,jdbcType=TIMESTAMP},
+      modified_time = #{modifiedTime,jdbcType=TIMESTAMP}
+    where product_id = #{productId,jdbcType=INTEGER}
+  </update>
+</mapper>

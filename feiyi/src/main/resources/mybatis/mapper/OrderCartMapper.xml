@@ -23,7 +23,7 @@
     select
     <include refid="Base_Column_List" />
     from order_cart
-    where customer_id = #{customerId}
+    where customer_id = #{customerId} ORDER BY cart_id DESC
   </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from order_cart

@@ -8,6 +8,13 @@
         .layui-table-cell{
             display:table-cell;
             vertical-align: middle;
+            font-size:14px;
+            padding:0 5px;
+            height:auto;
+            overflow:visible;
+            text-overflow:inherit;
+            white-space:normal;
+            word-break: break-all;
         }
     </style>
 
@@ -16,58 +23,15 @@
 
 <!--购物车-->
 <table id="cart" class="layui-table" lay-filter="cart" lay-skin="nob">
-   <!-- <tr>
-        <td colspan="5">
-            <input type="checkbox">全选
-            <a href="#">加入收藏</a>
-            <a href="#">删除</a>
 
-        </td>
-    </tr>-->
-    <!--<thead>
-        <tr>
-            <th>商品信息</th>
-            <th>单价</th>
-            <th>数量</th>
-            <th>金额</th>
-            <th>操作</th>
-        </tr>
-    </thead>
-    <tbody>
-    <tr>
-        <td><input type="checkbox"><img src="/img/剪纸1号.png" width="80px"/></td>
-        <td>
-            <em style="text-decoration: line-through">20</em><br>
-            <em>10</em>
-        </td>
-        <td>2</td>
-        <td>20</td>
-        <td>
-            <a href="#">加入收藏</a><br>
-            <a href="#">删除</a>
-        </td>
-    </tr>
-    <tr>
-        <td><input type="checkbox"><img src="/img/剪纸1号.png" width="80px"/></td>
-        <td>
-            <em style="text-decoration: line-through">20</em><br>
-            <em>10</em>
-        </td>
-        <td>2</td>
-        <td>20</td>
-        <td>
-            <a href="#">加入收藏</a>
-        </td>
-    </tr>
-    </tbody>-->
 </table>
 
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
         <button class="layui-btn" lay-event="goIndex">返回首页</button>
-        <button class="layui-btn" lay-event="getCheckData">结算</button>
-        <button class="layui-btn" lay-event="getCheckLength">添加收藏</button>
-        <button class="layui-btn" lay-event="isAll">删除</button>
+        <button class="layui-btn" lay-event="myCollect">我的收藏</button>
+        <!--<button class="layui-btn" lay-event="getCheckData">结算</button>
+        <button class="layui-btn" lay-event="delAll">删除</button>-->
         <!--<button class="layui-btn" lay-event="getCheckData">获取选中行数据</button>
         <button class="layui-btn" lay-event="getCheckLength">获取选中数目</button>
         <button class="layui-btn" lay-event="isAll">验证是否全选</button>-->
@@ -82,7 +46,8 @@
 <script src="/layui/layui.js"></script>
 <script th:inline="none">
     layui.use('table', function(){
-        var table = layui.table;
+        var table = layui.table
+        ,$ = layui.$;
         table.render({
             elem: '#cart'
             //,height: 500  //表格高度
@@ -92,35 +57,42 @@
             ,totalRow: true //开启合计行
             ,cols: [[
                 {type:'checkbox' }
-                ,{field:'cartId', title:'ID', width:80, totalRowText: '合计'}
+                ,{field:'productName', title:'商品名称', width:80, totalRowText: '合计'}
                 ,{field:'productId',  title: '商品信息' ,templet:function (d){
                         //console.log(d)
-                    return "<img src='/img/剪纸1号.png'/>"+d.productId
+                        return "<img src='"+d.pic+"'/><a href='product_details?pid="+d.productId+"' style='font-size: 10px'><p>"+d.descript+"</p></a>"
                     }}
                 ,{field:'price', width: 80, title: '单价'}
                 ,{field:'productAmount', width: 80, title: '数量',totalRow: true}
                 ,{field:'priceCount',title: '金额', width: 80 , totalRow: true}
                 ,{title: '操作',toolbar: '#barDemo' }
             ]]
-            ,page: true
+            //,page: true
         });
         //头工具栏事件
         table.on('toolbar(cart)', function(obj){
             var checkStatus = table.checkStatus(obj.config.id);
+            let data = checkStatus.data;
             switch(obj.event){
                 case 'goIndex':
                     window.location.href ="index";
                     break;
                 case 'getCheckData':
-                    var data = checkStatus.data;
+
                     layer.alert(JSON.stringify(data));
                     break;
-                case 'getCheckLength':
-                    var data = checkStatus.data;
-                    layer.msg('选中了：'+ data.length + ' 个');
+                case 'myCollect':
+                    window.location.href ="collect";
                     break;
-                case 'isAll':
-                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                case 'delAll':
+                    layer.confirm('真的要删除选中的商品么', function(index){
+                        let cart=JSON.stringify(data);
+                        // cartIds=cart.cartId;
+                        //console.log(cart)
+
+                        //console.log(JSON.stringify(data))
+                    })
+                    //layer.msg(checkStatus.isAll ? '全选': '未全选');
                     break;
             };
         });
@@ -128,18 +100,48 @@
         //监听行工具事件
         table.on('tool(cart)', function(obj){
             var data = obj.data;
-            //console.log(obj)
+            //console.log(data)
             if(obj.event === 'del'){
                 layer.confirm('真的删除该商品么', function(index){
-                    obj.del();
-                    layer.close(index);
+                    $.ajax({
+                        url:'/shopCart/delOneShopCart?cartId='+data.cartId,
+                        method:'get',
+                        dataType:'JSON',
+                        success:function(res){
+                            if(res.code==200){
+                                /*obj.del();
+                                layer.close(index);*/
+                                layer.alert(res.msg);
+                                window.location.reload();
+                            }if(res.code==500){
+                                layer.alert(res.msg);
+                            }
+                        }
+                    });
+
                 });
             }if(obj.event === 'balance'){
                 //结算
-                window.location.href ="balance";
+                window.location.href ="payforsuccess";
             } else if(obj.event === 'addCollect'){
                 //添加收藏
-                window.location.href ="collect";
+                layer.confirm('是否添加到收藏', function(index) {
+                    $.ajax({
+                        url: '/shopCart/addOneCollect?cartId=' + data.cartId,
+                        method: 'get',
+                        dataType: 'JSON',
+                        success: function (res) {
+                            if (res.code == 200) {
+                                layer.alert(res.msg);
+                                //window.location.href = "collect";
+                            }
+                            if (res.code == 500) {
+                                layer.alert(res.msg);
+                            }
+                        }
+                    });
+                })
+                //window.location.href ="collect";
             }
         });
     });

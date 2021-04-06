@@ -8,6 +8,13 @@
         .layui-table-cell{
             display:table-cell;
             vertical-align: middle;
+            font-size:14px;
+            padding:0 5px;
+            height:auto;
+            overflow:visible;
+            text-overflow:inherit;
+            white-space:normal;
+            word-break: break-all;
         }
     </style>
 
@@ -21,8 +28,8 @@
 <script type="text/html" id="toolbarDemo">
     <div class="layui-btn-container">
         <button class="layui-btn" lay-event="goIndex">返回首页</button>
-        <button class="layui-btn" lay-event="getCheckData">结算</button>
-        <button class="layui-btn" lay-event="isAll">移除收藏</button>
+        <button class="layui-btn" lay-event="goShopCart">返回我的购物车</button>
+        <!--<button class="layui-btn" lay-event="delAll">移除收藏</button>-->
     </div>
 </script>
 <script type="text/html" id="barDemo">
@@ -32,45 +39,48 @@
 <script src="/layui/layui.js"></script>
 <script th:inline="none">
     layui.use('table', function(){
-        var table = layui.table;
+        var table = layui.table,
+        $=layui.$;
         table.render({
             elem: '#cart'
             //,height: 500  //表格高度
-            ,url:'/shopCart/list'
+            ,url:'/shopCart/listCollect'
             ,toolbar: '#toolbarDemo'//开启工具栏
             ,defaultToolbar:[]
             ,totalRow: true //开启合计行
             ,cols: [[
                 {type:'checkbox' }
-                ,{field:'cartId', title:'ID', width:80, totalRowText: '合计'}
+                ,{field:'productName', title:'商品名称', width:80, totalRowText: '合计'}
                 ,{field:'productId',  title: '商品信息' ,templet:function (d){
                         //console.log(d)
-                    return "<img src='/img/剪纸1号.png'/>"+d.productId
+                        return "<img src='"+d.pic+"'/><a href='product_details?pid="+d.productId+"' style='font-size: 10px'><p>"+d.descript+"</p></a>"
                     }}
                 ,{field:'price', width: 80, title: '单价'}
-                ,{field:'productAmount', width: 80, title: '数量',totalRow: true}
-                ,{field:'priceCount',title: '金额', width: 80 , totalRow: true}
+                ,{field:'productNumber', width: 80, title: '数量',totalRow: true}
+                //,{field:'priceCount',title: '金额', width: 80 , totalRow: true}
                 ,{title: '操作',toolbar: '#barDemo' }
             ]]
-            ,page: true
+            //,page: true
         });
         //头工具栏事件
         table.on('toolbar(cart)', function(obj){
-            var checkStatus = table.checkStatus(obj.config.id);
+            let checkStatus = table.checkStatus(obj.config.id);
+            let data = checkStatus.data;
             switch(obj.event){
                 case 'goIndex':
                     window.location.href ="index";
                     break;
+                case 'goShopCart':
+                    window.location.href ="shopcart";
+                    break;
                 case 'getCheckData':
-                    var data = checkStatus.data;
                     layer.alert(JSON.stringify(data));
                     break;
                 case 'getCheckLength':
-                    var data = checkStatus.data;
                     layer.msg('选中了：'+ data.length + ' 个');
                     break;
-                case 'isAll':
-                    layer.msg(checkStatus.isAll ? '全选': '未全选');
+                case 'delAll':
+                    //layer.msg(checkStatus.isAll ? '全选': '未全选');
                     break;
             };
         });
@@ -80,9 +90,22 @@
             var data = obj.data;
             //console.log(obj)
             if(obj.event === 'del'){
-                layer.confirm('真的删除该商品么', function(index){
-                    obj.del();
-                    layer.close(index);
+                layer.confirm('真的删除该收藏的商品么', function(index){
+                    /*obj.del();
+                    layer.close(index);*/
+                    $.ajax({
+                        url:'/shopCart/delOneCollect?collectId='+data.collectId,
+                        method:'get',
+                        dataType:'JSON',
+                        success:function(res){
+                            if(res.code==200){
+                                layer.alert(res.msg);
+                                window.location.reload();
+                            }if(res.code==500){
+                                layer.alert(res.msg);
+                            }
+                        }
+                    });
                 });
             }
         });

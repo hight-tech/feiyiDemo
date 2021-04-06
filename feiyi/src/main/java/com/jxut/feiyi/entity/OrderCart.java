@@ -1,8 +1,11 @@
 package com.jxut.feiyi.entity;
 
+import lombok.Data;
+
 import java.math.BigDecimal;
 import java.util.Date;
 
+@Data
 public class OrderCart {
     private Integer cartId;
 
@@ -15,6 +18,12 @@ public class OrderCart {
     private BigDecimal price;
 
     private BigDecimal priceCount;
+
+    private String productName;
+
+    private String descript;
+
+    private String pic;
 
     public BigDecimal getPriceCount() {
         return priceCount;

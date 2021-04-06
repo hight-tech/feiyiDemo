@@ -15,6 +15,12 @@ public class SystemController {
     @Autowired
     private CustomerLoginService customerLoginService;
 
+    /**
+     * 登录
+     * @param customerLogin 登录信息
+     * @param reqeset
+     * @return
+     */
     @PostMapping("loginIndex")
     public AjaxResult loginIndex(CustomerLogin customerLogin, HttpServletRequest reqeset){
         CustomerLogin c = customerLoginService.selectByNameAndPwd(customerLogin);
